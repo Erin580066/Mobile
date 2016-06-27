@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,user-scalable=no"/>
 		<title></title>
-		<style id="css">
+		<style >
 			html{height:100%;}
 			body{
 				margin:0;
@@ -145,18 +145,18 @@
 			setLayout();
 			function setLayout(){
 				var list = id('imglist');
-				var css = id('css')
+			
 				var li = list.children;
 				var str = '';
 				
 				var li = list.clientHeight/4;
 				console.log(list.clientHeight)
 				for (var i = 0; i < 16; i++) {
-					str +='<li><div class="div"><div><span></span><div><span></span><div><span></span><div><span></span></div></div></div></div></div></li>';
+					str +='<li style="height:'+li+'px"><div class="div"><div><span></span><div><span></span><div><span></span><div><span></span></div></div></div></div></div></li>';
 					
 				}
 				list.innerHTML = str;
-				css.innerHTML += "#imglist li{height:"+li+"px}"
+				
 //				alert(li.length)//16
 			}
 		</script>
