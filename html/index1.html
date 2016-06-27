@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no"/>
+		<title></title>
+		<style id="css">
+			html{height:100%;}
+			body{
+				margin:0;
+				height:100%;
+				position:relative;
+				overflow: hidden;
+				background:#000;
+			}
+			header,footer{
+				position: absolute;
+				left:0;
+				right:0;
+				top:0;
+				line-height: 40px;
+				color:#fff;
+				background:rgba(0,0,0,.2);
+				font-size: 16px;
+				text-align: center;
+				box-shadow: 0 0 5px rgba(0,0,0,.8);
+				z-index: 3;
+			}
+			footer{
+				bottom:0;
+				top:auto;
+			}
+			#wrap,#loading{
+				width:100%;
+				position:absolute;
+				left:0;
+				top:40px;
+				bottom:40px;
+				-webkit-perspective: 500px;
+				perspective: 500px;
+				z-index: 1;
+			}
+			#loading{
+				z-index: 2;
+				background:#000;
+			}
+			.div{
+				width:4rem;
+				height:100%;
+				position:relative;
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				transition:3s;
+				-webkit-transform-origin:center center 2rem;
+				transform-origin:center center 2rem;
+				/*animation: move 2s infinite;*/
+			}
+			.div div{
+				width:4rem;
+				height:100%;
+				position:absolute;
+				left:4rem;
+				top:0;
+				transform-style: preserve-3d;
+				transform: rotateY(90deg);
+				transform-origin: left;
+			}
+			.div>div{
+				left:0;
+				transform: rotateY(0deg);
+			}
+			.div span{
+				width:100%;
+				height:100%;
+				display:block;
+			}
+			#imglist{
+				width:100%;
+				height:100%;
+				position:relative;
+				z-index: 1;
+			}
+			#imglist li{
+				width:4rem;
+				float:left;
+				-webkit-perspective: 500px;
+				perspective: 500px;
+			}
+			#navs{
+				width:100%;
+				height:12px;
+				padding:10px 0;
+				position: absolute;
+				left:0;
+				bottom:0;
+				background:rgba(255,255,255,.4);
+				box-shadow: 0 0 5px rgba(255,255,255,.7);
+				z-index: 5;
+				text-align:center;
+			}
+			#navs a{
+				width:12px;
+				height:12px;
+				background:#fff;
+				display:inline-block;
+				margin:0 8px;
+				vertical-align: top;
+			}
+			#navs .active{
+				background:#f90;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<div id="loading" style="display: none;">
+			<div id="load"></div>
+		</div>
+		<div id="wrap">
+			<ul id="imglist">
+				<li id="lis">
+					<div class="div">
+						<div>
+							<span>1</span>
+							<div>
+								<span>2</span>
+								<div>
+									<span>3</span>
+									<div>
+										<span>4</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>	
+		<nav id="navs"></nav>
+		<script type="text/javascript">
+//			获取id函数
+			function id(idName){
+				return document.getElementById(idName);
+			}
+			setLayout();
+			function setLayout(){
+				var list = id('imglist');
+				var css = id('css')
+				var li = list.children;
+				var str = '';
+				
+				var li = list.clientHeight/4;
+				console.log(list.clientHeight)
+				for (var i = 0; i < 16; i++) {
+					str +='<li><div class="div"><div><span></span><div><span></span><div><span></span><div><span></span></div></div></div></div></div></li>';
+					
+				}
+				list.innerHTML = str;
+				css.innerHTML += "#imglist li{height:"+li+"px}"
+//				alert(li.length)//16
+			}
+		</script>
+	</body>
+</html>
