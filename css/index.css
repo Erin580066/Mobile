@@ -92,6 +92,7 @@ footer{
 	height:100%;
 	display:block;
 	background-size: 16rem auto;
+	background-size: contain;
 }
 #imglist{
 	width:100%;

@@ -40,7 +40,7 @@
 		
 		<nav id="navs"></nav>
 		<script type="text/javascript">
-			var imgUrls = ["../img/10.jpg","../img/11.jpg","../img/12.jpg","../img/14.jpg"]
+			var imgUrls = ["../img/11.jpg","../img/11.jpg","../img/12.jpg","../img/14.jpg"]
 //			获取id函数
 			function id(idName){
 				return document.getElementById(idName);
@@ -60,7 +60,8 @@
 					var spans = li[i].getElementsByTagName('span');
 					for (var j = 0; j < spans.length; j++) {
 						spans[j].style.backgroundImage = "url("+imgUrls[j]+")";
-						spans[j].style.backgroundPosition = -(i%4)*4+"rem -"+parseInt(i/4)*liH+"px"
+						spans[j].style.backgroundPosition = -(i%4)*4+"rem -"+parseInt(i/4)*liH+"px";
+						
 					}
 				}
 			}
