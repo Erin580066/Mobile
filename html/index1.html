@@ -1,70 +1,89 @@
 <!DOCTYPE html>
 <html >
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,user-scalable=no"/>
-		<title></title>
-		<style>
-			img{
-				width:50px;
-				height:50px;
-				background-size: cover;
-			}
-		</style>
-		<link rel="stylesheet" href="../css/index.css" />
-	</head>
-	<body>
-		<div id="loading" style="display: none;">
-			<div id="load"></div>
-		</div>
-		<div id="wrap">
-			<ul id="imglist">
-				<li id="lis">
-					<div class="div">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="x5-orientation" content="portrait">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="full-screen" content="yes">
+	<script>
+		setSize();
+//			window.addEventListener("resize",setSize,false);
+//			window.addEventListener("orientationchange",setSize,false);
+		function setSize()
+		{
+			var oHtml=document.getElementsByTagName("html")[0];
+			var iWidth=oHtml.getBoundingClientRect().width;
+			oHtml.style.fontSize=iWidth/16+"px";
+		}
+	</script>
+	<title></title>
+	<link rel="stylesheet" href="../css/index.css" />
+</head>
+<body>
+	<header>This is header</header>
+	<div id="loading" style="display: none;">
+		<div id="load"></div>
+	</div>
+	<div id="wrap">
+		<ul id="imgList">
+			<!--<li id="lis">
+				<div class="div">
+					<div>
+						<span>1</span>
 						<div>
-							<span>1</span>
+							<span>2</span>
 							<div>
-								<span>2</span>
+								<span>3</span>
 								<div>
-									<span>3</span>
-									<div>
-										<span>4</span>
-									</div>
+									<span>4</span>
 								</div>
 							</div>
 						</div>
 					</div>
-				</li>
-			</ul>
-		</div>	
-		
-		<nav id="navs"></nav>
-		<script type="text/javascript">
-			var imgUrls = ["../img/11.jpg","../img/11.jpg","../img/12.jpg","../img/14.jpg"]
+				</div>
+			</li>-->
+		</ul>
+		<nav id="navs">
+	    	<a href="javascript:;" class="active"></a>
+	        <a href="javascript:;"></a>
+	        <a href="javascript:;"></a>
+	        <a href="javascript:;"></a>
+	    </nav>
+	</div>	
+	<footer>这是footer</footer>
+	<script type="text/javascript">
+		var imgUrls = ["../img/11.jpg","../img/11.jpg","../img/12.jpg","../img/14.jpg"]
 //			获取id函数
-			function id(idName){
-				return document.getElementById(idName);
-			}
-			setLayout();
-			function setLayout(){
-				var list = id('imglist');
-				var li = list.children;
-				var str = '';
-				var liH = list.clientHeight/4;
+		function id(idName){
+			return document.getElementById(idName);
+		}
+		setLayout();
+		function setLayout(){
+			var list = id('imgList');
+			var li=list.getElementsByTagName("li");
+			var str = '';
+			
+			var listH=list.clientHeight;
+			var liH=listH/4;
+			
 //				console.log(list.clientHeight)
-				for (var i = 0; i < 16; i++) {
-					str +='<li style="height:'+liH+'px"><div class="div"><div><span></span><div><span></span><div><span></span><div><span></span></div></div></div></div></div></li>';
-				}
-				list.innerHTML = str;
-				for (var i = 0; i < li.length; i++) {
-					var spans = li[i].getElementsByTagName('span');
-					for (var j = 0; j < spans.length; j++) {
-						spans[j].style.backgroundImage = "url("+imgUrls[j]+")";
-						spans[j].style.backgroundPosition = -(i%4)*4+"rem -"+parseInt(i/4)*liH+"px";
-						
-					}
+			for (var i = 0; i < 16; i++) {
+				str +='<li style="height:'+liH+'px"><div class="div"><div><span></span><div><span></span><div><span></span><div><span></span></div></div></div></div></div></li>';
+			}
+			list.innerHTML = str;
+			
+			for(var i=0; i<li.length; i++){
+				var span=li[i].getElementsByTagName("span");
+				for(var j=0; j<span.length; j++){
+					span[j].style.backgroundImage="url("+imgUrls[j]+")";
+					span[j].style.backgroundPosition=-(i%4)*4+"rem -"+parseInt(i/4)*liH+"px";
 				}
 			}
-		</script>
-	</body>
+		}
+	</script>
+</body>
 </html>
