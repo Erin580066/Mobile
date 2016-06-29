@@ -13,9 +13,23 @@
 	</head>
 	<body>
 		<div id="box">
-			<a></a>
-			<a href="#"></a>
-			<a href="javascript:;"></a>
+			
 		</div>
+		<script src="../js/touch.js"></script>
+		<script type="text/javascript">
+			
+			var box=document.getElementById("box");
+			
+			$(box).swipeLeft(
+				function (){
+					console.log("向左滑动");
+				}
+			);
+			$(box).swipeRight(
+				function (){
+					console.log("向右滑动");
+				}
+			);		
+		</script>
 	</body>
 </html>
