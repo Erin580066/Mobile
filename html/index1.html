@@ -68,24 +68,83 @@
 		var list = id('imgList');
 		var boxs = document.getElementsByClassName('div');
 		var now = 0;
+		var onoff = false;
+		var timer = null;
 		$(list).swipeLeft(
-			function (){
-				now++;
-				for(var i=0; i<boxs.length; i++){
-					boxs[i].style.WebkitTransform=boxs[i].style.transform="rotateY("+-now*90+"deg)";
-				}
-				tabNav();
+		function (){
+			if(onoff)
+			{
+				return;
 			}
-		);
-		$(list).swipeRight(
-			function (){
-				now--;
-				for(var i=0; i<boxs.length; i++){
-					boxs[i].style.WebkitTransform=boxs[i].style.transform="rotateY("+-now*90+"deg)";
-				}
-				tabNav();
+			onoff = true;
+			now++;
+			var i=0;
+			clearInterval(timer);
+			timer=setInterval(
+				function (){
+					if(i==3)
+					{
+						clearInterval(timer);
+					}
+					tabImg(i,-1);
+					i++;
+				},
+				30
+			);
+			tabNav();
+		}
+	);
+	$(list).swipeRight(
+		function (){
+			if(onoff)
+			{
+				return;
 			}
+			onoff = true;
+			now--;
+			var i=0;
+			clearInterval(timer);
+			timer=setInterval(
+				function (){
+					if(i==3)
+					{
+						clearInterval(timer);
+					}
+					tabImg(i,1);
+					i++;
+				},
+				30
+			);
+			tabNav();
+		}
+	);
+	function tabImg(rows,dis){
+		var timer2=0;
+		var start= dis>0? rows*4 : (rows+1)*4-1;
+		var end= dis>0?  (rows+1)*4-1 : rows*4;
+		timer2=setInterval(
+			function() {
+				if(start == end)
+				{
+					clearInterval(timer2);
+				}
+				if(rows==3 && start == end)
+				{
+					mTween(boxs[start],{rotateY:-90*now},1200,"backIn",
+						function (){
+							onoff = false;
+						}
+					);
+				}
+				else
+				{
+					mTween(boxs[start],{rotateY:-90*now},1200,"backIn");
+				}
+				start+=dis;
+			},
+			60
 		);
+	}
 		function tabNav(){
 			var navs=id("navs").children;
 			var nub=now%navs.length;
